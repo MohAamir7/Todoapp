@@ -52,22 +52,38 @@ li:hover{
 li:last-child{
     border-bottom: none;
 }
+.filter-btn{
+    background-color:rgba(213, 213, 43, 0.753);
+    transition: 0.3;
+}
 .filter-btn,.editbtn,.deletebtn,.completedbtn{
     padding: 10px 20px;
     border: none;
     margin: 10px 10px 10px 0px;
     border-radius: 5px;
     cursor: pointer;
-}
-#all{
-    background-color: rgba(199, 46, 46, 0.715);
-}
-#pending{
-    background-color: rgba(213, 213, 43, 0.753);
-}
     
-#completed{
+}
+.completedbtn:hover,.deletebtn:hover,.editbtn:hover{
+    background-color: var(--btn-primary);
+}
+
+.filter-btn:hover{
+    background-color: var(--btn-primary);
+
+}
+.editbtn{
+  background-color:rgba(213, 213, 43, 0.753);
+  transition: 0.3;
+}
+.deletebtn{
+    background-color: rgba(199, 46, 46, 0.715);
+    transition: 0.3;
+}
+.completedbtn{
     background-color: rgba(36, 182, 36, 0.689);
+    transition: 0.3;
+
 }
 
 .taskItem{

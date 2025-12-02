@@ -68,11 +68,40 @@ function deletetodo(e){
     console.log("deleting");
     const taskItem = e.target.parentElement.parentElement;
     const taskId = taskItem.getAttribute("data-id");
-    let tasks = loadstodo();
+    let tasks = loadstodo(); 
     tasks.todosList = tasks.todosList.filter(task => task.id != taskId);
     refreshtodos(tasks);
     resetHtml(tasks);
 
+}
+function editTodo(e){
+     console.log("toggling");
+    const taskItem = e.target.parentElement.parentElement;
+    const taskId = taskItem.getAttribute("data-id");
+    let tasks = loadstodo();
+    const response = prompt("what is the new task you want to set");
+    console.log(tasks.todosList)
+    tasks.todosList.forEach(todo=>{
+        if(todo.id == taskId){
+            todo.text = response;
+        }
+    });
+    refreshtodos(tasks);
+    resetHtml(tasks);
+
+}
+function addNewTodo(){
+    const todoInput = document.getElementById("textinput");
+    const todoText = todoInput.value;
+        if(todoText ==''){
+            alert("Please write something for todo");
+        }else{
+            todos = loadstodo();
+            let id = todos.todosList.length;
+            addTodoToLocalStorage({text:todoText,isCompleted:false,id});
+            appendHtml({text:todoText,isCompleted:false,id});
+            todoInput.value = '';
+        }
 }
 function appendHtml(todo){
     const taskList = document.getElementById("taskList");
@@ -88,6 +117,7 @@ function appendHtml(todo){
     const editbtn = document.createElement('Button');
     editbtn.textContent = "Edit";
     editbtn.classList.add('editbtn');
+    editbtn.addEventListener("click",editTodo);
 
     const deletebtn = document.createElement('Button');
     deletebtn.textContent = 'Delete';
@@ -121,16 +151,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         btn.addEventListener("click",executefilter);
     }
     submitButton.addEventListener("click",()=>{
-        const todoText = todoInput.value;
-        if(todoText ==''){
-            alert("Please write something for todo");
-        }else{
-            todos = loadstodo();
-            let id = todos.todosList.length;
-            addTodoToLocalStorage({text:todoText,isCompleted:false,id});
-            appendHtml({text:todoText,isCompleted:false,id});
-            todoInput.value = '';
-        }
+        addNewTodo();
+        
     });
 
     todoInput.addEventListener("change",(Event)=>{
@@ -144,5 +166,12 @@ document.addEventListener("DOMContentLoaded",()=>{
         appendHtml(todo);
         
     });
+    document.addEventListener("keypress",(Event)=>{
+        if(Event.code == 'Enter'){
+            addNewTodo();
+
+        }
+
+    })
     
 });
