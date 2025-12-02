@@ -52,3 +52,30 @@ li:hover{
 li:last-child{
     border-bottom: none;
 }
+.filter-btn,.editbtn,.deletebtn,.completedbtn{
+    padding: 10px 20px;
+    border: none;
+    margin: 10px 10px 10px 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#all{
+    background-color: rgba(199, 46, 46, 0.715);
+}
+#pending{
+    background-color: rgba(213, 213, 43, 0.753);
+}
+    
+#completed{
+    background-color: rgba(36, 182, 36, 0.689);
+}
+
+.taskItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.completed{
+    text-decoration: line-through;
+}
